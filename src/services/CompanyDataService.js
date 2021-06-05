@@ -2,11 +2,11 @@ let COMPANIES = [
   {name: "", cnpj:"", address: "", responsible: "", phone: "", collection_place: false},
 ]
 
-const getAll = () => {
+export const getAll = () => {
   return COMPANIES;
 };
 
-export const getById = (name) => {
+export const getByName = (name) => {
   if (name === "") return COMPANIES;
 
   let filtrado = COMPANIES.filter(obj => obj.title.includes(name) ); // retorna os objs que contém 
