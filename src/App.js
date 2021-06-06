@@ -1,13 +1,12 @@
 import Menu from './components/Menu';
-import Company from './components/Company';
-import CompanyList from './components/CompanyList';
-import AddCompany from './components/AddCompany';
+import Routes from './routes/Routes';
 
 const App = () => {
   return (
     <>
       <Menu/>
       <div className="container mt-3">
+        <Routes/>
         {/* <Switch>
           <Route exact path="/companies" component={CompanyList} />
           <Route exact path="/add-company" component={AddCompany} />

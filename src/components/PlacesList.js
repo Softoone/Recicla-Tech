@@ -1,4 +1,3 @@
-import { AlertTitle } from "@material-ui/lab";
 import React,{useState} from "react";
 import { Link } from "react-router-dom";
 import PlacesDataService from "../services/PlacesDataService";
