@@ -1,12 +1,22 @@
+import { Switch, Route } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Menu from './components/Menu';
+import Company from './components/Company';
+import CompanyList from './components/CompanyList';
+import AddCompany from './components/AddCompany';
 
 const App = () => {
   return (
     <>
       <Menu/>
-      App component
+      <div className="container mt-3">
+        <Switch>
+          <Route exact path="/companies" component={CompanyList} />
+          <Route exact path="/add-company" component={AddCompany} />
+          <Route path="/company/:id" component={Company} />
+        </Switch>
+      </div>
     </>
   );
 }

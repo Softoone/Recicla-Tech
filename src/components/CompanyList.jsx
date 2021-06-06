@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 // import Pagination from "@material-ui/lab/Pagination";
 
-import CompanyDataService from "../services/CompanyDataService";
+import * as CompanyDataService from "../services/CompanyDataService";
 
 
 const CompaniesList = () => {
@@ -67,10 +67,13 @@ const CompaniesList = () => {
             <tr>
               <th scope="col">#</th>
               <th scope="col">Nome</th>
-              <th scope="col">cnpj</th>
-              <th scope="col">address</th>
-              <th scope="col">responsible</th>
-              <th scope="col">phone</th>
+              <th scope="col">CNPJ</th>
+              <th scope="col">Endereco</th>
+              <th scope="col">Responsavel</th>
+              <th scope="col">Telefone</th>
+              <td>Editar</td>
+              <td>Remover</td>
+              {/* <th scope="col">Eh ponto de colata ?</th> */}
             </tr>
           </thead>
           <tbody>
@@ -79,13 +82,22 @@ const CompaniesList = () => {
             companies.map((company, index) => (
               <tr>
                 <th scope="row">{index}</th>
-                <td>{company.cnpj}</td>
-                <td>{company.address}</td>
-                <td> <Link to={`/companies/${company.name}`}
-                  className="badge badge-warning">Edit</Link>
+                <th scope="row">{company.name}</th>
+                <td scope="row">{company.cnpj}</td>
+                <td scope="row">{company.address}</td>
+                <td scope="row">{company.responsible}</td>
+                <td scope="row">{company.phone}</td>
+                <td scope="row"> 
+                  <Link 
+                    className="badge badge-warning"
+                    to={`/company/${company.name}`}
+                  >Edit</Link>
                 </td>
-                <td> <Link onClick={() => deleteCompany(company.name)}
-                  className="badge badge-danger">Remove</Link>
+                <td scope="row"> 
+                  <Link 
+                    className="badge badge-danger"
+                    onClick={() => deleteCompany(company.name)}
+                  >Remove</Link>
                 </td>
               </tr>
             ))}

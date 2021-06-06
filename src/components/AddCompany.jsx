@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CompanyDataService from "../services/CompanyDataService";
+import * as CompanyDataService from "../services/CompanyDataService";
 
 const AddCompany = () => {
   const initialCompanyState = {
@@ -50,7 +50,7 @@ const AddCompany = () => {
       ) : (
         <div>
           <div className="form-group">
-            <label htmlFor="name">Company</label>
+            <label htmlFor="name">Nome Empresa</label>
             <input
               type="text"
               className="form-control"
