@@ -23,6 +23,7 @@ import AddShipping_Company from "../components/AddShipping_Company";
 // User
 import AddUser from '../components/AddUser';
 import UserList from '../components/UserList';
+import User from '../components/EditUser'
 
 const Routes = () => {
   return (
@@ -50,6 +51,7 @@ const Routes = () => {
       {/* Usuario */}
       <Route exact path={"/usuario"} component={UserList}/>
       <Route exact path={"/add-usuario"} component={AddUser}/>
+      <Route exact path={"/usuario/:id"} component={User} />
       
     </Switch>
   );
