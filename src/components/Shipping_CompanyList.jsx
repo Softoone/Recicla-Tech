@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom";
-import Shipping_CompanyDataService from "./services/Shipping_CompanyDataService";
+import Shipping_CompanyDataService from "../services/Shipping_CompanyDataService";
 
 const ShippingCompanyList = () => {
     

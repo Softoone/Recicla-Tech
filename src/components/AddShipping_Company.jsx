@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import Shipping_CompanyDataService, { create } from "./services/Shipping_CompanyDataService"
+import Shipping_CompanyDataService, { create } from "../services/Shipping_CompanyDataService"
 
 const AddShipping_Company = () =>{
     const initialShippingCompanyState = {

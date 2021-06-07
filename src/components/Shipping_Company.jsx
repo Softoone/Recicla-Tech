@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Shipping_CompanyDataService from "./services/Shipping_CompanyDataService";
+import Shipping_CompanyDataService from "../services/Shipping_CompanyDataService";
 import { Link } from "react-router-dom";
 
 const Shipping_Company = props => {
