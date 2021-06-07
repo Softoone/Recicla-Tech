@@ -1,7 +1,7 @@
 let REGISTER_SHIPPING = [
-    {name: "Marcos", contacts: "(71) 9 9900-9900", type_car: "Caminhonete", restrict: "1000kg", image: ""},
-    {name: "Algusto", contacts: "(71) 9 9900-9900", type_car: "Caminhão", restrict: "5000kg", image:""},
-    {name: "Rafael", contacts: "(71) 9 9900-9900", type_car: "Caminhão", restrict: "4000kg", image: ""}
+    {name: "Marcos", contacts: "(71) 9 9900-9900", type_car: "Caminhonete", restrict: "1000kg"},
+    {name: "Algusto", contacts: "(71) 9 9900-9900", type_car: "Caminhão", restrict: "5000kg"},
+    {name: "Rafael", contacts: "(71) 9 9900-9900", type_car: "Caminhão", restrict: "4000kg"}
 ]
 
 
@@ -23,7 +23,6 @@ const update = (name, data) => {
             item.contacts = data.contacts
             item.type_car = data.type_car
             item.restrict = data.restrict
-            item.image = data.image
         }
     });
     return

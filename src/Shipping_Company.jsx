@@ -144,7 +144,7 @@ const Shipping_Company = props => {
       ) : (
         <div>
           <br />
-          <p>Please click on a Tutorial...</p>
+          <p>Por favor clique em Transportadora...</p>
         </div>
       )}
     </div>

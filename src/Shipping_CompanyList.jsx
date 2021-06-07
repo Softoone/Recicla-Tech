@@ -28,8 +28,8 @@ const ShippingCompanyList = () => {
     };
     return (
     <div className ="list row">
-        <div className="col-md-10">
-            <div className="input-group mb-3">
+        <div className="m-3 col-md-10">
+            <div className="input-group mb-3 justify-content-center" >
                 <input 
                     type ="text" 
                     value={searchName} 
@@ -46,28 +46,30 @@ const ShippingCompanyList = () => {
                 </div>
             </div>
         </div>
-        <div>
+        <div className="row">
             {
                 shippingCompanys &&
                 shippingCompanys.map((shipping_companys, index) =>(
-                    <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <div class="row row-cols-1 row-cols-md-2 g-4">
                         <div class="col">
                             <div class="card h-100">
-                                <img src={shipping_companys.image} class="card-img-top" alt="..."/>
                                 <div class="card-body">
                                     <h5 class="card-title">{shipping_companys.name}</h5>
                                         <li>
-                                            {shipping_companys.type_car}
+                                            Contato: {shipping_companys.contacts}
+                                            
                                         </li>
                                         <li>
-                                            {shipping_companys.contacts}
+                                            Tipo de Veiculo: {shipping_companys.type_car}
                                         </li>
                                         <li>
-                                            {shipping_companys.restrict}
+                                            Restrições: {shipping_companys.restrict}
                                         </li>
-                                    <Link to={"/transportadora/"+ shipping_companys.name}
-                                    className = "btn btn-warning">Editar</Link>
-                                    <Link onClick = {()=>deleteShippingCompany(shipping_companys.name)} className= "btn btn-danger">Delete</Link>
+                           
+                                        <Link to={"/transportadora/"+ shipping_companys.name}
+                                        className = "btn btn-warning">Editar</Link>
+                                        <Link onClick = {()=>deleteShippingCompany(shipping_companys.name)} className= "m-3 btn btn-danger">Delete</Link>
+                                    
                                 </div>
                             </div>
                         </div>

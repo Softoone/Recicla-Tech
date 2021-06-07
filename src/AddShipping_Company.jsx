@@ -7,7 +7,6 @@ const AddShipping_Company = () =>{
         contacts: "",
         type_car: "",
         restrict: "",
-        image: ""
     }
 
     const [shipping_Company, setShippingCompany] = useState(initialShippingCompanyState)
@@ -25,8 +24,6 @@ const AddShipping_Company = () =>{
             contacts: shipping_Company.contacts,
             type_car: shipping_Company.type_car,
             restrict: shipping_Company.restrict,
-            image: shipping_Company.image
-
         }
         create(data)
         setSubmmitted(true)
@@ -89,29 +86,16 @@ const AddShipping_Company = () =>{
                         id="restrict" 
                         required 
                         value={shipping_Company.restrict} 
+                        placeholder="Ex: 1000Kg / Não Transporto Baterias"
                         onChange={handleInputChange} 
                         name = "restrict"
                         />
                     </div>
-                    <div className = "form-group">
-                        <label htmlFor = "image">Imagem</label>
-                        <input className="form-control" 
-                        type="file" 
-                        id="image" 
-                        required 
-                        value={shipping_Company.image} 
-                        onChange={handleInputChange} 
-                        name = "image"
-                        />
-                    </div>
-                    <button onClick={saveShippingCompany} className = "btn btn-success">
+                    <button onClick={saveShippingCompany} className = "mt-3 btn btn-success">
                         Enviar
                     </button>
                 </div>
             )}
-                <div>
-                    <img class="imagem" src="http://via.placeholder.com/350x150" alt="Sua imagem" width="350" height="150"/>
-                </div>      
         </div>
     );
        
