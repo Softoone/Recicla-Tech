@@ -1,5 +1,7 @@
 let Users = [
-  
+  {name: "Everton", phone: "988331651", email: "testedoemail@email.com", password: "********"},
+  {name: "Everton", phone: "988331651", email: "testedoemail@email.com", password: "********"},
+  {name: "Everton", phone: "988331651", email: "testedoemail@email.com", password: "********"}
 ]
 
 const getAll = () => {
