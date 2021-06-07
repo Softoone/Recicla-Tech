@@ -39,7 +39,7 @@ const UserList = () => {
           <input
             type="text"
             className="form-control"
-            placeholder="Search by Username"
+            placeholder="Search for User"
             value={searchUsername}
             onChange={onChangeSearchUsername}
           />
@@ -64,6 +64,8 @@ const UserList = () => {
               <th scope="col">Telefone</th>
               <th scope="col">Email</th>
               <th scope="col">Senha</th>
+              <th scope="col">BtnEdit</th>
+              <th scope="col">BtnRemove</th>
             </tr>
           </thead>
           <tbody>
