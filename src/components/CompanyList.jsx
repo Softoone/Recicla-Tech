@@ -89,13 +89,13 @@ const CompaniesList = () => {
                 <td scope="row">{company.phone}</td>
                 <td scope="row"> 
                   <Link 
-                    className="badge badge-warning"
+                    className="btn btn-warning"
                     to={`/company/${company.name}`}
                   >Edit</Link>
                 </td>
                 <td scope="row"> 
                   <Link 
-                    className="badge badge-danger"
+                    className="btn btn-danger"
                     onClick={() => deleteCompany(company.name)}
                   >Remove</Link>
                 </td>

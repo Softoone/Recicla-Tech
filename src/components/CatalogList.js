@@ -86,11 +86,11 @@ const TutorialsList = () => {
                 <td>{tutorial.description}</td>
                 <td>{tutorial.type}</td>
                 <td>{tutorial.state ? " Good" : " Damaged"}</td>
-                <td> <Link to={"/tutorials/" + tutorial.title}
-                  className="badge badge-warning">Edit</Link>
+                <td> <Link to={"/catalog/" + tutorial.title}
+                  className="btn btn-warning">Edit</Link>
                 </td>
                 <td> <Link onClick={() => deleteTutorial(tutorial.title)}
-                  className="badge badge-danger">Remove</Link>
+                  className="btn btn-danger">Remove</Link>
                 </td>
               </tr>
             ))}

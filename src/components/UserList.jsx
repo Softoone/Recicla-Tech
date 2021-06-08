@@ -39,7 +39,7 @@ const UserList = () => {
           <input
             type="text"
             className="form-control"
-            placeholder="Search by Username"
+            placeholder="Search for User"
             value={searchUsername}
             onChange={onChangeSearchUsername}
           />
@@ -64,6 +64,8 @@ const UserList = () => {
               <th scope="col">Telefone</th>
               <th scope="col">Email</th>
               <th scope="col">Senha</th>
+              <th scope="col">BtnEdit</th>
+              <th scope="col">BtnRemove</th>
             </tr>
           </thead>
           <tbody>
@@ -76,11 +78,11 @@ const UserList = () => {
                 <td scope="row">{user.email}</td>
                 <td scope="row">{user.password}</td>
                 <td scope="row"> <Link to={"/user/" + user.name}
-                  className="badge badge-warning">Edit</Link>
+                  className="btn btn-sm btn-warning">Edit</Link>
                 </td>
                 <td scope="row"> 
                     <Link onClick={() => deleteUser(user.title)}
-                        className="badge badge-danger"
+                        className="btn btn-sm btn-danger"
                         >Remove
                     </Link>
                 </td>

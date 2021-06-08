@@ -66,7 +66,7 @@ const ShippingCompanyList = () => {
                                             Restrições: {shipping_companys.restrict}
                                         </li>
                            
-                                        <Link to={"/transportadora/"+ shipping_companys.name}
+                                        <Link to={"/shipping-company/"+ shipping_companys.name}
                                         className = "btn btn-warning">Editar</Link>
                                         <Link onClick = {()=>deleteShippingCompany(shipping_companys.name)} className= "m-3 btn btn-danger">Delete</Link>
                                     

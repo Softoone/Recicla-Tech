@@ -1,5 +1,7 @@
 let Users = [
-  
+  {name: "Everton", phone: "988331651", email: "testedoemail@email.com", password: "********"},
+  {name: "Everton", phone: "988331651", email: "testedoemail@email.com", password: "********"},
+  {name: "Everton", phone: "988331651", email: "testedoemail@email.com", password: "********"}
 ]
 
 const getAll = () => {
@@ -8,9 +10,7 @@ const getAll = () => {
 
 const getById = (name) => {
   if (name === "") return Users
-  //var filtrado = PRODUCTS.filter((obj) => { return obj.name == name; });  // retorna os objs que são iguais
-  //var filtrado = PRODUCTS.filter((obj) => obj.name == name ); // retorna os objs que são iguais
-  var filtrado = Users.filter((obj) => obj.name.includes(name) ); // retorna os objs que contém 
+  var filtrado = Users.filter((obj) => obj.name.includes(name) );
   return filtrado
 
 };

@@ -61,7 +61,7 @@ const Tutorial = props => {
     <div>
       {currentTutorial ? (
         <div className="edit-form">
-          <h4>Tutorial</h4>
+          <h4>Catálogo</h4>
             <form>
               <div className="form-group">
                 <label htmlFor="title">Title</label>
@@ -108,28 +108,28 @@ const Tutorial = props => {
               
           {currentTutorial.state ? (
             <button
-              className="badge badge-primary mr-2"
+              className="btn btn-primary mr-2"
               onClick={() => updateState(false)}
             >
               Damaged
             </button>
           ) : (
             <button
-              className="badge badge-primary mr-2"
+              className="btn btn-primary mr-2"
               onClick={() => updateState(true)}
             >
               Good
             </button>
           )}
           
-          <button className="badge badge-danger mr-2" onClick={deleteTutorial}>
+          <button className="btn btn-danger mr-2" onClick={deleteTutorial}>
             Delete
           </button>
           
-          <Link to="/">
+          <Link to="/catalog">
             <button
               type="submit"
-              className="badge badge-success"
+              className="btn btn-success"
               onClick={updateTutorial}
             >
               Update

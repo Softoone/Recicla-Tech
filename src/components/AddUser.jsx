@@ -1,5 +1,4 @@
 import {useState} from 'react'
-import react from 'react'
 
 const AddUser = () => {
     const defaultUser = {
@@ -95,20 +94,6 @@ const AddUser = () => {
                   name="password"
                 />
               </div>
-    
-
-    
-              {/* <div className="form-group">
-                <label htmlFor="collection_place">Eh ponto de colata ?</label>
-                <input
-                  type="radio"
-                  className="form-control"
-                  id="collection_place"
-                  required
-                  onChange={handleInputChange}
-                  name="collection_place"
-                />
-              </div> */}
     
               <button onClick={saveUser} className="btn btn-success">
                 Cadastrar

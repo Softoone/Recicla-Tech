@@ -53,6 +53,7 @@ const Menu = () => {
         
         <div className="collapse navbar-collapse  justify-content-end " id="navbarSupportedContent">
           <ul className="navbar-nav">
+<<<<<<< HEAD
           
           <Dropdown isOpen={dropdownOpenCompany} toggle={toggleOpenCompany}>  
             <DropdownToggle caret>
@@ -138,6 +139,23 @@ const Menu = () => {
                 </Link>
             </DropdownMenu> 
           </Dropdown> 
+=======
+            <li className="nav-item dropdown">
+              <Link to={"/company"} className="nav-link" data-toggle="collapse">Empresa</Link>
+            </li>
+            <li className="nav-item">
+              <Link to={"/catalog"} className="nav-link" data-toggle="collapse" >Catálogo</Link>
+            </li>
+            <li className="nav-item">
+              <Link to={"/places"} className="nav-link" data-toggle="collapse" >Locais de coleta</Link>
+            </li>
+            <li className="nav-item">
+              <Link to={"/shipping-company"} className="nav-link" data-toggle="collapse" >Transportadora</Link>
+            </li>
+            <li className="nav-item">
+              <Link to={"/user"} className="nav-link" data-toggle="collapse" >Usuario</Link>
+            </li>
+>>>>>>> 0a5c1715f16ab84c58a73a1c41b2f7ae8cd1a34d
           </ul>
         </div>
       </div>
