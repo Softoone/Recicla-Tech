@@ -13,19 +13,19 @@ const Menu = () => {
         <div className="collapse navbar-collapse  justify-content-end " id="navbarSupportedContent">
           <ul className="navbar-nav">
             <li className="nav-item dropdown">
-              <Link to={"/empresa"} className="nav-link" data-toggle="collapse">Empresa</Link>
+              <Link to={"/company"} className="nav-link" data-toggle="collapse">Empresa</Link>
             </li>
             <li className="nav-item">
-              <Link to={"/catalogo"} className="nav-link" data-toggle="collapse" >Catálogo</Link>
+              <Link to={"/catalog"} className="nav-link" data-toggle="collapse" >Catálogo</Link>
             </li>
             <li className="nav-item">
-              <Link to={"/locais-coleta"} className="nav-link" data-toggle="collapse" >Locais de coleta</Link>
+              <Link to={"/places"} className="nav-link" data-toggle="collapse" >Locais de coleta</Link>
             </li>
             <li className="nav-item">
-              <Link to={"/transportadora"} className="nav-link" data-toggle="collapse" >Transportadora</Link>
+              <Link to={"/shipping-company"} className="nav-link" data-toggle="collapse" >Transportadora</Link>
             </li>
             <li className="nav-item">
-              <Link to={"/usuario"} className="nav-link" data-toggle="collapse" >Usuario</Link>
+              <Link to={"/user"} className="nav-link" data-toggle="collapse" >Usuario</Link>
             </li>
           </ul>
         </div>

@@ -78,11 +78,11 @@ const UserList = () => {
                 <td scope="row">{user.email}</td>
                 <td scope="row">{user.password}</td>
                 <td scope="row"> <Link to={"/user/" + user.name}
-                  className="badge badge-warning">Edit</Link>
+                  className="btn btn-sm btn-warning">Edit</Link>
                 </td>
                 <td scope="row"> 
                     <Link onClick={() => deleteUser(user.title)}
-                        className="badge badge-danger"
+                        className="btn btn-sm btn-danger"
                         >Remove
                     </Link>
                 </td>

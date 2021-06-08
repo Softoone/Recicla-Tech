@@ -17,7 +17,7 @@ const User = (props) => {
   
 
   useEffect(()=>{
-    const data = UserDataService.getByName(key)
+    const data = UserDataService.getById(key)
     console.log(key);
     setCurrentUser(data[0]); 
   }, []);
@@ -106,14 +106,14 @@ const User = (props) => {
 
             </form>
 
-          <button className="badge badge-danger mr-2" onClick={deleteUser}>
+          <button className="btn btn-danger mr-2" onClick={deleteUser}>
             Delete
           </button>
           
-          <Link to="/users">
+          <Link to="/user">
             <button
               type="submit"
-              className="badge badge-success"
+              className="btn btn-success"
               onClick={updateUser}
             >
               Update

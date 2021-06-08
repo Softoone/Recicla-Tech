@@ -29,29 +29,29 @@ const Routes = () => {
   return (
     <Switch>
       {/* empresa */}
-      <Route exact path={"/empresa"} component={CompanyList}/>
-      <Route exact path={"/add-empresa"} component={AddCompany}/>
-      <Route exact path={"/empresas/:id"} component={Company}/>
+      <Route exact path={"/company"} component={CompanyList}/>
+      <Route exact path={"/add-company"} component={AddCompany}/>
+      <Route exact path={"/company/:id"} component={Company}/>
 
       {/* Catalogo */}
-      <Route exact path={"/catalogo"} component={CatalogList}/>
-      <Route exact path={"/add-catalogo"} component={AddCatalog}/>
-      <Route exact path={"/catalogo/:id"} component={Catalog}/>
+      <Route exact path={"/catalog"} component={CatalogList}/>
+      <Route exact path={"/add-catalog"} component={AddCatalog}/>
+      <Route exact path={"/catalog/:id"} component={Catalog}/>
 
       {/* Locais de coleta */}
-      <Route exact path={"/locais-coleta"} component={PlacesList}/>
-      <Route exact path={"/add-locais-coleta"} component={AddPlaces}/>
-      <Route exact path={"/locais-coleta/:id"} component={Places}/>
+      <Route exact path={"/places"} component={PlacesList}/>
+      <Route exact path={"/add-places"} component={AddPlaces}/>
+      <Route exact path={"/places/:id"} component={Places}/>
 
       {/* Transportadora */}
-      <Route exact path={"/transportadora"} component={Shipping_CompanyList}/>
-      <Route exact path={"/add-transportadora"} component={AddShipping_Company}/>
-      <Route exact path={"/transportadora/:id"} component={Shipping_Company}/>
+      <Route exact path={"/shipping-company"} component={Shipping_CompanyList}/>
+      <Route exact path={"/add-shipping-company"} component={AddShipping_Company}/>
+      <Route exact path={"/shipping-company/:id"} component={Shipping_Company}/>
 
       {/* Usuario */}
-      <Route exact path={"/usuario"} component={UserList}/>
-      <Route exact path={"/add-usuario"} component={AddUser}/>
-      <Route exact path={"/usuario/:id"} component={User} />
+      <Route exact path={"/user"} component={UserList}/>
+      <Route exact path={"/add-users"} component={AddUser}/>
+      <Route exact path={"/user/:id"} component={User} />
       
     </Switch>
   );

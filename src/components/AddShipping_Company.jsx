@@ -80,7 +80,7 @@ const AddShipping_Company = () =>{
                         />
                     </div>
                     <div className = "form-group">
-                        <label htmlFor = "name">Retricões</label>
+                        <label htmlFor = "name">Restricões</label>
                         <input className="form-control" 
                         type="text" 
                         id="restrict" 

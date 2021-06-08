@@ -152,14 +152,14 @@ const Company = ({ match }) => {
             </button>
           )} */}
           
-          <button className="badge badge-danger mr-2" onClick={deleteTutorial}>
+          <button className="btn btn-danger mr-2" onClick={deleteTutorial}>
             Delete
           </button>
           
-          <Link to="/companies">
+          <Link to="/company">
             <button
               type="submit"
-              className="badge badge-success"
+              className="btn btn-success"
               onClick={updateTutorial}
             >
               Update
