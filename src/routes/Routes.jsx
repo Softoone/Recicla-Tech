@@ -50,7 +50,7 @@ const Routes = () => {
 
       {/* Usuario */}
       <Route exact path={"/user"} component={UserList}/>
-      <Route exact path={"/add-users"} component={AddUser}/>
+      <Route exact path={"/add-user"} component={AddUser}/>
       <Route exact path={"/user/:id"} component={User} />
       
     </Switch>
