@@ -53,20 +53,19 @@ const Menu = () => {
         
         <div className="collapse navbar-collapse  justify-content-end " id="navbarSupportedContent">
           <ul className="navbar-nav">
-<<<<<<< HEAD
           
           <Dropdown isOpen={dropdownOpenCompany} toggle={toggleOpenCompany}>  
             <DropdownToggle caret>
               Empresas
             </DropdownToggle>
             <DropdownMenu>
-                <Link to={"/empresa"} className="nav-link" data-toggle="collapse">
+                <Link to={"/company"} className="nav-link" data-toggle="collapse">
                 <DropdownItem>
                   Visualizar Empresas 
                 </DropdownItem>
                 </Link>
                 <DropdownItem divider />
-                <Link to={"/add-empresa"} className="nav-link" data-toggle="collapse">
+                <Link to={"/add-company"} className="nav-link" data-toggle="collapse">
                 <DropdownItem>Adicionar</DropdownItem>
                 </Link>
             </DropdownMenu>
@@ -77,13 +76,13 @@ const Menu = () => {
                 Catálogo
             </DropdownToggle>
             <DropdownMenu>
-                <Link to={"/catalogo"} className="nav-link" data-toggle="collapse">
+                <Link to={"/catalog"} className="nav-link" data-toggle="collapse">
                 <DropdownItem>
                   Visualizar Catálogo 
                 </DropdownItem>
                 </Link>
                 <DropdownItem divider />
-                <Link to={"/add-catalogo"} className="nav-link" data-toggle="collapse">
+                <Link to={"/add-catalog"} className="nav-link" data-toggle="collapse">
                 <DropdownItem>Adicionar</DropdownItem>
                 </Link>
             </DropdownMenu>
@@ -94,13 +93,13 @@ const Menu = () => {
                 Locais de Coleta
           </DropdownToggle>
           <DropdownMenu>
-              <Link to={"/locais-coleta"} className="nav-link" data-toggle="collapse">
+              <Link to={"/places"} className="nav-link" data-toggle="collapse">
               <DropdownItem>
                 Visualizar Locais
               </DropdownItem>
               </Link>
               <DropdownItem divider />
-              <Link to={"/add-locais-coleta"} className="nav-link" data-toggle="collapse">
+              <Link to={"/add-places"} className="nav-link" data-toggle="collapse">
               <DropdownItem>Adicionar</DropdownItem>
               </Link>
           </DropdownMenu>
@@ -111,13 +110,13 @@ const Menu = () => {
                 Transportadora
             </DropdownToggle>
             <DropdownMenu>
-                <Link to={"/transportadora"} className="nav-link" data-toggle="collapse">
+                <Link to={"/shipping-company"} className="nav-link" data-toggle="collapse">
                 <DropdownItem>
                   Visualizar Transportadora 
                 </DropdownItem>
                 </Link>
                 <DropdownItem divider />
-                <Link to={"/add-transportadora"} className="nav-link" data-toggle="collapse">
+                <Link to={"/add-shipping-company"} className="nav-link" data-toggle="collapse">
                 <DropdownItem>Adicionar</DropdownItem>
                 </Link>
             </DropdownMenu>
@@ -128,34 +127,17 @@ const Menu = () => {
                 Usuário
             </DropdownToggle>
             <DropdownMenu>
-                <Link to={"/usuario"} className="nav-link" >
+                <Link to={"/user"} className="nav-link" >
                 <DropdownItem>
                   Visualizar Usuário 
                 </DropdownItem>
                 </Link>
                 <DropdownItem divider />
-                <Link to={"/add-usuario"} className="nav-link" data-toggle="collapse">
+                <Link to={"/add-user"} className="nav-link" data-toggle="collapse">
                 <DropdownItem>Adicionar</DropdownItem>
                 </Link>
             </DropdownMenu> 
           </Dropdown> 
-=======
-            <li className="nav-item dropdown">
-              <Link to={"/company"} className="nav-link" data-toggle="collapse">Empresa</Link>
-            </li>
-            <li className="nav-item">
-              <Link to={"/catalog"} className="nav-link" data-toggle="collapse" >Catálogo</Link>
-            </li>
-            <li className="nav-item">
-              <Link to={"/places"} className="nav-link" data-toggle="collapse" >Locais de coleta</Link>
-            </li>
-            <li className="nav-item">
-              <Link to={"/shipping-company"} className="nav-link" data-toggle="collapse" >Transportadora</Link>
-            </li>
-            <li className="nav-item">
-              <Link to={"/user"} className="nav-link" data-toggle="collapse" >Usuario</Link>
-            </li>
->>>>>>> 0a5c1715f16ab84c58a73a1c41b2f7ae8cd1a34d
           </ul>
         </div>
       </div>
