@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
-import UserDataService from "../services/UserDataService";
+import UserDataService from "../services/UserDataServiceRest";
 
 
 const UserList = () => {
   
   const [searchUsername, setSearchUsername] = useState("");
   const [users, setUsers] = useState(UserDataService.getAll());
+
+  useEffect(() => {
+    retrieveUsers()
+  }, [])
+
+  const retrieveUsers = () => {
+    UserDataService.getAll()
+    /* .then(response => {
+      setUsers(response.data)
+    }) */
+  } 
 
   const onChangeSearchUsername = e => {
     const searchUsername = e.target.value;
@@ -21,14 +32,13 @@ const UserList = () => {
 
   const removeAllUsers = () => {
     if (window.confirm('Deseja excluir?')){
-        UserDataService.removeAll();
+        UserDataService.remove();
       setUsers(UserDataService.getAll())
     }
   };
 
-
   const findByUsername = () => {
-    setUsers(UserDataService.getById(searchUsername))
+    setUsers(UserDataService.findByUser(searchUsername))
   };
 
   return (
@@ -60,12 +70,13 @@ const UserList = () => {
         <table class="table">
           <thead class="thead-dark">
             <tr>
+              <th scope="col">#</th>
               <th scope="col">Nome</th>
               <th scope="col">Telefone</th>
               <th scope="col">Email</th>
               <th scope="col">Senha</th>
-              <th scope="col">BtnEdit</th>
-              <th scope="col">BtnRemove</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
@@ -73,15 +84,16 @@ const UserList = () => {
             users &&
             users.map((user, index) => (
               <tr>
+                <th scope="row">{user.id}</th>
                 <th scope="row">{user.name}</th>
                 <td scope="row">{user.phone}</td>
                 <td scope="row">{user.email}</td>
                 <td scope="row">{user.password}</td>
-                <td scope="row"> <Link to={"/user/" + user.name}
+                <td scope="row"> <Link to={"/user/" + user.id}
                   className="btn btn-sm btn-warning">Edit</Link>
                 </td>
                 <td scope="row"> 
-                    <Link onClick={() => deleteUser(user.title)}
+                    <Link onClick={() => deleteUser(user.id)}
                         className="btn btn-sm btn-danger"
                         >Remove
                     </Link>
