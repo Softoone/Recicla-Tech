@@ -1,24 +1,11 @@
-<<<<<<< HEAD
-import "bootstrap/dist/css/bootstrap.min.css";
-
-import Menu from './components/Menu';
-import AddUser from './components/AddUser'
-
-const App = () => {
-  return (
-    <>
-      <Menu/>
-      App component
-    </>
-=======
 import React from "react";
 import { Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
-import AddTutorial from "./components/AddCatalog";
-import Tutorial from "./components/Catalog";
-import TutorialsList from "./components/CatalogList";
+import AddTutorial from "./components/AddPlaces";
+import Tutorial from "./components/Places";
+import TutorialsList from "./components/PlacesList";
 
 function App() {
   return (
@@ -49,7 +36,6 @@ function App() {
         </Switch>
       </div>
     </div>
->>>>>>> feature/catalogo
   );
 }
 
