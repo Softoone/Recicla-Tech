@@ -1,27 +1,25 @@
-let PRODUCTS = [
+let PLACES = [
   
 ]
 
 const getAll = () => {
-  return PRODUCTS;
+  return PLACES;
 };
 
 const getById = (name) => {
-  if (name === "") return PRODUCTS
-  //var filtrado = PRODUCTS.filter((obj) => { return obj.name == name; });  // retorna os objs que são iguais
-  //var filtrado = PRODUCTS.filter((obj) => obj.name == name ); // retorna os objs que são iguais
-  var filtrado = PRODUCTS.filter((obj) => obj.name.includes(name) ); // retorna os objs que contém 
+  if (name === "") return PLACES
+  var filtrado = PLACES.filter((obj) => obj.name.includes(name) ); // retorna os objs que contém 
   return filtrado
 
 };
 
 const create = (data) => {
-  return PRODUCTS.push(data);
+  return PLACES.push(data);
 };
 
 const update = (key, data) => {
   console.log(key)
-  PRODUCTS.forEach(function(item) {
+  PLACES.forEach(function(item) {
     if (item.name === key){
       item.name = data.name
       item.address = data.address
@@ -36,11 +34,11 @@ const update = (key, data) => {
 };
 
 const remove = (key) => {
-  return PRODUCTS.splice(PRODUCTS.indexOf(key), 1);
+  return PLACES.splice(PLACES.indexOf(key), 1);
 };
 
 const removeAll = () => {
-  PRODUCTS=[]
+  PLACES=[]
 };
 
 export default {

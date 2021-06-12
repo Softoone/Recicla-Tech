@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PlacesDataService from "../services/PlacesDataService";
 
 const AddPlaces = () => {
-  const initialTutorialState = {
+  const initialPlaceState = {
     id: null,
     title: "",
     description: "",
@@ -12,22 +12,22 @@ const AddPlaces = () => {
     capacity:"",
     published: false
   };
-  const [tutorial, setTutorial] = useState(initialTutorialState);
+  const [place, setPlace] = useState(initialPlaceState);
   const [submitted, setSubmitted] = useState(false);
 
   const handleInputChange = event => {
     const { name, value } = event.target;
-    setTutorial({ ...tutorial, [name]: value });
+    setPlace({ ...place, [name]: value });
   };
 
-  const saveTutorial = () => {
+  const savePlace = () => {
     var data = {
-      name: tutorial.name,
-      address: tutorial.address,
-      contact:tutorial.contact,
-      materialType:tutorial.materialType,
-      latLong:tutorial.latLong,
-      capacity:tutorial.capacity,
+      name: place.name,
+      address: place.address,
+      contact: place.contact,
+      materialType:place.materialType,
+      latLong:place.latLong,
+      capacity:place.capacity,
       published: false
     };
 
@@ -35,8 +35,8 @@ const AddPlaces = () => {
     setSubmitted(true);
   };
 
-  const newTutorial = () => {
-    setTutorial(initialTutorialState);
+  const newPlace = () => {
+    setPlace(initialPlaceState);
     setSubmitted(false);
   };
 
@@ -45,13 +45,13 @@ const AddPlaces = () => {
       {submitted ? (
         <div>
           <h4>You submitted successfully!</h4>
-          <button className="btn btn-success" onClick={newTutorial}>
+          <button className="btn btn-success" onClick={newPlace}>
             Add
           </button>
         </div>
       ) : (
         <div>
-          <form onSubmit={saveTutorial}> 
+          <form onSubmit={savePlace}> 
           <div className="form-group">
             <label htmlFor="name">Name</label>
             <input
@@ -59,7 +59,7 @@ const AddPlaces = () => {
               className="form-control"
               id="name"
               required
-              value={tutorial.name}
+              value={place.name}
               onChange={handleInputChange}
               name="name"
             />
@@ -71,7 +71,7 @@ const AddPlaces = () => {
               className="form-control"
               id="address"
               placeholder = "exemplo@gmail.com"
-              value={tutorial.address}
+              value={place.address}
               onChange={handleInputChange}
               name="address"
             />
@@ -84,7 +84,7 @@ const AddPlaces = () => {
               id="contact"
               required
               placeholder = "(xx) 9xxxx-xxxx"
-              value={tutorial.contact}
+              value={place.contact}
               onChange={handleInputChange}
               name="contact"
             />
@@ -97,7 +97,7 @@ const AddPlaces = () => {
               id="materialType"
               required
               placeholder="Bateria"
-              value={tutorial.materialType}
+              value={place.materialType}
               onChange={handleInputChange}
               name="materialType"
             />
@@ -109,7 +109,7 @@ const AddPlaces = () => {
               className="form-control"
               id="latLong"
               placeholder="-12.969522241359458, -38.512655070565565"
-              value={tutorial.latLong}
+              value={place.latLong}
               onChange={handleInputChange}
               name="latLong"
             />
@@ -122,7 +122,7 @@ const AddPlaces = () => {
               id="capacity"
               required
               placeholder = "In M³"
-              value={tutorial.capacity}
+              value={place.capacity}
               onChange={handleInputChange}
               name="capacity"
             />

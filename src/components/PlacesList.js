@@ -6,7 +6,7 @@ import PlacesDataService from "../services/PlacesDataService";
 const PlacesList = () => {
   
   const[searchTitle, setSearchTitle]= useState("")
-  const[tutorials, setTutorials] = useState(PlacesDataService.getAll())
+  const[places, setPlaces] = useState(PlacesDataService.getAll())
 
   const onChangeSearchTitle = e =>{
     setSearchTitle(e.target.value)
@@ -14,19 +14,19 @@ const PlacesList = () => {
   }
 
   const findByTitle = () =>{
-    setTutorials(PlacesDataService.getById(searchTitle))
+    setPlaces(PlacesDataService.getById(searchTitle))
   }
 
-  const deleteTutorial=(id)=>{
+  const deletePlace=(id)=>{
     if (window.confirm('Deseja excluir?')){
       PlacesDataService.remove(id);
     }
   }
 
-  const removeAllTutorials = () =>{
+  const removeAllPlaces = () =>{
     if (window.confirm('Deseja excluir TODOS os itens?')){
       PlacesDataService.removeAll();
-      setTutorials(PlacesDataService.getAll())
+      setPlaces(PlacesDataService.getAll())
     }
   }
   
@@ -70,18 +70,18 @@ const PlacesList = () => {
             </thead>
             <tbody>
               {
-                tutorials &&
-                tutorials.map((tutorial,index) =>(
+                places &&
+                places.map((place,index) =>(
                   <tr>
-                    <th scope="row">{tutorial.key}</th>
-                    <td>{tutorial.name}</td>
-                    <td>{tutorial.address}</td>
-                    <td>{tutorial.contact}</td>
-                    <td>{tutorial.materialType}</td>
-                    <td>{tutorial.latLong}</td>
-                    <td>{tutorial.capacity}</td>
-                    <td><Link to={"/Places/"+tutorial.name} className="badge badge-warning">Edit</Link></td>
-                    <td><Link onClick={()=>deleteTutorial(tutorial.name)} className="badge badge-danger">Remove</Link></td>
+                    <th scope="row">{place.key}</th>
+                    <td>{place.name}</td>
+                    <td>{place.address}</td>
+                    <td>{place.contact}</td>
+                    <td>{place.materialType}</td>
+                    <td>{place.latLong}</td>
+                    <td>{place.capacity}</td>
+                    <td><Link to={"/Places/"+place.name} className="btn btn-warning btn-sm">Edit</Link></td>
+                    <td><Link onClick={()=>deletePlace(place.name)} className="btn btn-danger btn-sm">Remove</Link></td>
                   </tr>
                 ))
               }
@@ -89,7 +89,7 @@ const PlacesList = () => {
           </table>
           <button 
           className="m-3 btn btn-sm btn-danger"
-          onClick={removeAllTutorials}
+          onClick={removeAllPlaces}
           >Remove ALL Places</button>
         </div>
     </div>

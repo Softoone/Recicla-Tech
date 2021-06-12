@@ -3,7 +3,7 @@ import PlacesDataService from "../services/PlacesDataService";
 import { Link } from "react-router-dom";
 
 const Places = props => {
-  const initialTutorialState = {
+  const initialPlaceState = {
     key: null,
     name: "",
     address: "",
@@ -14,61 +14,61 @@ const Places = props => {
     published: "Unpublished"
   };
   const [message, setMessage] = useState("");
-  const [currentTutorial, setCurrentTutorial] = useState(initialTutorialState);
+  const [currentPlace, setCurrentPlace] = useState(initialPlaceState);
   const [key, setKey] = useState(props.match.params.id)
 
   useEffect(()=>{
     const data = PlacesDataService.getById(key)
     console.log(key)
-    setCurrentTutorial(data[0])     
+    setCurrentPlace(data[0])     
   }, [])
 
   const   handleInputChange = event => {
     const { name, value } = event.target;
-    setCurrentTutorial({ ...currentTutorial, [name]: value });
+    setCurrentPlace({ ...currentPlace, [name]: value });
   };
 
   const updatePublished = status => {
     const data = {
-      name: currentTutorial.name,
-      address: currentTutorial.address,
-      contact:currentTutorial.contact,
-      materialType:currentTutorial.materialType,
-      latLong:currentTutorial.latLong,
-      capacity:currentTutorial.capacity,
+      name: currentPlace.name,
+      address: currentPlace.address,
+      contact:currentPlace.contact,
+      materialType:currentPlace.materialType,
+      latLong:currentPlace.latLong,
+      capacity:currentPlace.capacity,
       published: status
     };
     PlacesDataService.update(key, data);  
-    setCurrentTutorial(data)
+    setCurrentPlace(data)
   };
 
-  const updateTutorial = () => {
-    //console.log(currentTutorial)
+  const updatePlace = () => {
+    //console.log(currentPlace)
     const data = {
-      name: currentTutorial.name,
-      address: currentTutorial.address,
-      contact:currentTutorial.contact,
-      materialType:currentTutorial.materialType,
-      latLong:currentTutorial.latLong,
-      capacity:currentTutorial.capacity,
-      published: currentTutorial.published
+      name: currentPlace.name,
+      address: currentPlace.address,
+      contact:currentPlace.contact,
+      materialType:currentPlace.materialType,
+      latLong:currentPlace.latLong,
+      capacity:currentPlace.capacity,
+      published: currentPlace.published
     };  
     PlacesDataService.update(key, data);
-    setCurrentTutorial(data)
+    setCurrentPlace(data)
   };
 
-  const deleteTutorial = () => {
-    console.log(currentTutorial)
+  const deletePlace = () => {
+    console.log(currentPlace)
     if (window.confirm('Deseja excluir?')){
-      PlacesDataService.remove(currentTutorial.key);  
+      PlacesDataService.remove(currentPlace.key);  
     }
   };
 
   return (
     <div>
-      {currentTutorial ? (
+      {currentPlace ? (
         <div className="edit-form">
-          <h4>Tutorial</h4>
+          <h4>Place</h4>
             <form>
               <div className="form-group">
                 <label htmlFor="name">Name</label>
@@ -77,7 +77,7 @@ const Places = props => {
                   className="form-control"
                   id="name"
                   name="name"
-                  value={currentTutorial.name}
+                  value={currentPlace.name}
                   onChange={handleInputChange}
                 />
               </div>
@@ -88,7 +88,7 @@ const Places = props => {
                   className="form-control"
                   id="address"
                   name="address"
-                  value={currentTutorial.address}
+                  value={currentPlace.address}
                   onChange={handleInputChange}
                 />
               </div>
@@ -99,7 +99,7 @@ const Places = props => {
                   className="form-control"
                   id="contact"
                   name="contact"
-                  value={currentTutorial.contact}
+                  value={currentPlace.contact}
                   onChange={handleInputChange}
                 />
               </div>
@@ -110,7 +110,7 @@ const Places = props => {
                   className="form-control"
                   id="materialType"
                   name="materialType"
-                  value={currentTutorial.materialType}
+                  value={currentPlace.materialType}
                   onChange={handleInputChange}
                 />
               </div>
@@ -121,7 +121,7 @@ const Places = props => {
                   className="form-control"
                   id="latLong"
                   name="latLong"
-                  value={currentTutorial.latLong}
+                  value={currentPlace.latLong}
                   onChange={handleInputChange}
                 />
               </div>
@@ -132,7 +132,7 @@ const Places = props => {
                   className="form-control"
                   id="capacity"
                   name="capacity"
-                  value={currentTutorial.capacity}
+                  value={currentPlace.capacity}
                   onChange={handleInputChange}
                 />
               </div>
@@ -140,10 +140,10 @@ const Places = props => {
                 <label>
                   <strong>Status:</strong>
                 </label>
-                {currentTutorial.published ? "Published" : "Pending"}
+                {currentPlace.published ? "Published" : "Pending"}
               </div>
             </form>
-          {currentTutorial.published ? (
+          {currentPlace.published ? (
             <button
               className="badge badge-primary mr-2"
               onClick={() => updatePublished(false)}
@@ -158,14 +158,14 @@ const Places = props => {
               Publish
             </button>
           )}
-          <button className="badge badge-danger mr-2" onClick={deleteTutorial}>
+          <button className="badge badge-danger mr-2" onClick={deletePlace}>
             Delete
           </button>
           <Link to="/">
             <button
               type="submit"
               className="badge badge-success"
-              onClick={updateTutorial}
+              onClick={updatePlace}
             >
               Update
             </button>
@@ -175,7 +175,7 @@ const Places = props => {
       ) : (
         <div>
           <br />
-          <p>Please click on a Tutorial...</p>
+          <p>Please click on a Place...</p>
         </div>
       )}
     </div>
