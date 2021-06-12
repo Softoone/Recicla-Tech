@@ -1,5 +1,8 @@
 import { Switch, Route } from 'react-router-dom';
 
+// Home
+import Home from '../components/Home';
+
 // Empresas
 import Company from '../components/Company';
 import CompanyList from '../components/CompanyList';
@@ -28,6 +31,8 @@ import User from '../components/EditUser'
 const Routes = () => {
   return (
     <Switch>
+      <Route exact path={["/", "/home"]} component={Home}/>
+
       {/* empresa */}
       <Route exact path={"/company"} component={CompanyList}/>
       <Route exact path={"/add-company"} component={AddCompany}/>
