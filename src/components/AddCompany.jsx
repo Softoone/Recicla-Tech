@@ -1,5 +1,5 @@
 import { useState } from "react";
-import * as CompanyDataService from "../services/CompanyDataService";
+import * as api from "../services/CompanyMockApi";
 
 const AddCompany = () => {
   const initialCompanyState = {
@@ -29,7 +29,7 @@ const AddCompany = () => {
       collection_place : company.collection_place ? true : false,
     }
 
-    CompanyDataService.create(data);
+    api.create(data);
     setSubmitted(true);
   };
 
@@ -113,19 +113,6 @@ const AddCompany = () => {
               name="phone"
             />
           </div>
-
-          {/* <div className="form-group">
-            <label htmlFor="collection_place">Eh ponto de colata ?</label>
-            <input
-              type="radio"
-              className="form-control"
-              id="collection_place"
-              required
-              onChange={handleInputChange}
-              name="collection_place"
-            />
-          </div> */}
-
           <button onClick={saveCompany} className="btn btn-success">
             Submit
           </button>

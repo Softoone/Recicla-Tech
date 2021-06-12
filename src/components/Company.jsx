@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import * as CompanyDataService from "../services/CompanyDataService";
-
+import  * as api from '../services/CompanyMockApi';
+ 
 const Company = ({ match }) => {
-  const initialCompanyState = {
+  const initialCompanyState = { 
     name: "",
     cnpj:"",
     address: "",
@@ -15,13 +15,13 @@ const Company = ({ match }) => {
 
   const [message, setMessage] = useState("");
   const [currentCompany, setCurrentCompany] = useState(initialCompanyState);
-  const [key, setKey] = useState(match.params.id);
+  const [key, setKey] = useState();
   
 
   useEffect(()=>{
-    const data = CompanyDataService.getByName(key)
-    console.log(key);
-    setCurrentCompany(data[0]); 
+    api.getOne(match.params.id).then(response => {
+      setCurrentCompany(response.data);
+    })
   }, []);
 
   const handleInputChange = event => {
@@ -29,22 +29,7 @@ const Company = ({ match }) => {
     setCurrentCompany({ ...currentCompany, [name]: value });
   };
 
-  // const updatePublished = status => {
-  //   const data = { 
-  //     name : currentCompany.name,
-  //     cnpj : currentCompany.cnpj,
-  //     address : currentCompany.address,
-  //     responsible : currentCompany.responsible,
-  //     phone : currentCompany.phone,
-  //     collection_place : currentCompany.collection_place ? true : false,
-  //   }
-    
-  //   CompanyDataService.update(key, data);
-  //   setCurrentCompany(data);
-  // };
-
-  const updateTutorial = () => {
-    //console.log(currentTutorial)
+  const updateCompany = () => {
     const data = { 
       name : currentCompany.name,
       cnpj : currentCompany.cnpj,
@@ -54,14 +39,12 @@ const Company = ({ match }) => {
       collection_place : currentCompany.collection_place ? true : false,
     }
 
-    CompanyDataService.update(key, data);
-    setCurrentCompany(data);
+    api.update(currentCompany.id, data);;
   };
 
-  const deleteTutorial = () => {
-    // console.log(currentTutorial)
+  const deleteCompany = () => {
     if (window.confirm('Deseja excluir?')){
-      CompanyDataService.remove(currentCompany.name);  
+      api.remove(currentCompany.id);
     }
   };
 
@@ -136,23 +119,8 @@ const Company = ({ match }) => {
                 />
               </div>
             </form>
-          {/* {currentCompany.published ? (
-            <button
-              className="badge badge-primary mr-2"
-              onClick={() => updatePublished(false)}
-            >
-              UnPublish
-            </button>
-          ) : (
-            <button
-              className="badge badge-primary mr-2"
-              onClick={() => updatePublished(true)}
-            >
-              Publish
-            </button>
-          )} */}
           
-          <button className="btn btn-danger mr-2" onClick={deleteTutorial}>
+          <button className="btn btn-danger mr-2" onClick={deleteCompany}>
             Delete
           </button>
           
@@ -160,7 +128,7 @@ const Company = ({ match }) => {
             <button
               type="submit"
               className="btn btn-success"
-              onClick={updateTutorial}
+              onClick={updateCompany}
             >
               Update
             </button>

@@ -1,13 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-// import Pagination from "@material-ui/lab/Pagination";
 
-import * as CompanyDataService from "../services/CompanyDataService";
-
+import  * as api  from '../services/CompanyMockApi';
 
 const CompaniesList = () => {
   const [searchName, setSearchName] = useState("");
-  const [companies, setCompanies] = useState(CompanyDataService.getAll());
+  const [companies, setCompanies] = useState([]);
 
 
   const onChangeSearchName = event => {
@@ -17,23 +15,33 @@ const CompaniesList = () => {
 
 
 
-  const deleteCompany = title => {
+  const deleteCompany = (id) => {
     if (window.confirm('Deseja excluir?')){
-      CompanyDataService.remove(title);
+      api.remove(id);
     }
   }
 
   const removeAllCompanies = () => {
     if (window.confirm('Deseja excluir?')){
-      CompanyDataService.removeAll();
-      setCompanies(CompanyDataService.getAll())
+      api.removeAll();
+      api.getAll(response => {
+        setCompanies(response.data)
+      })
     }
   };
 
 
   const findByName = () => {
-    setCompanies(CompanyDataService.getByName(searchName))
+    api.findCompaniesByName((searchName)).then(response => {
+      setCompanies(response.data)
+    })
   };
+
+  useEffect(()=>{
+    api.getAll().then(response => {
+      setCompanies(response.data)
+    });
+  },[]);
 
   return (
     <div className="list row">
@@ -73,15 +81,14 @@ const CompaniesList = () => {
               <th scope="col">Telefone</th>
               <td>Editar</td>
               <td>Remover</td>
-              {/* <th scope="col">Eh ponto de colata ?</th> */}
             </tr>
           </thead>
           <tbody>
           { 
             companies &&
             companies.map((company, index) => (
-              <tr>
-                <th scope="row">{index}</th>
+              <tr key={index}>
+                <th scope="row">{company.id}</th>
                 <th scope="row">{company.name}</th>
                 <td scope="row">{company.cnpj}</td>
                 <td scope="row">{company.address}</td>
@@ -90,13 +97,13 @@ const CompaniesList = () => {
                 <td scope="row"> 
                   <Link 
                     className="btn btn-warning"
-                    to={`/company/${company.name}`}
+                    to={`/company/${company.id}`}
                   >Edit</Link>
                 </td>
                 <td scope="row"> 
                   <Link 
                     className="btn btn-danger"
-                    onClick={() => deleteCompany(company.name)}
+                    onClick={() => deleteCompany(company.id)}
                   >Remove</Link>
                 </td>
               </tr>
