@@ -1,42 +1,43 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import { Link } from "react-router-dom";
-import TutorialDataService from "../services/CatalogDataService";
-import AddTutorial from "./AddCatalog";
+import * as api from '../services/CatalogMockApi';
 
 
-const TutorialsList = () => {
-  
+const CatalogsList = () => {
   const [searchTitle, setSearchTitle] = useState("");
-  const [tutorials, setTutorials] = useState(TutorialDataService.getAll());
-  const [show, setShow] = useState(false);
+  const [catalog, setCatalog] = useState([]);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  const onChangeSearchTitle = e => {
-    const searchTitle = e.target.value;
-    setSearchTitle(searchTitle);
+  const onChangeSearchTitle = event => {
+    const TargetTitle = event.target.value;
+    setSearchTitle(TargetTitle);
   };
 
-
-
-  const deleteTutorial = (id) => {
+  const deleteCatalog = (id) => {
     if (window.confirm('Deseja excluir?')){
-      TutorialDataService.remove(id);
+      api.remove(id); 
     }
   }
 
-  const removeAllTutorials = () => {
+  const removeAllCatalog = () => {
     if (window.confirm('Deseja excluir?')){
-      TutorialDataService.removeAll();
-      setTutorials(TutorialDataService.getAll())
+      api.removeAll();
+      api.getAll(response => {
+        setCatalog(response.data)
+      })
     }
   };
 
-
   const findByTitle = () => {
-    setTutorials(TutorialDataService.getById(searchTitle))
+    api.findCatalogByTitle((searchTitle)).then(response => {
+      setCatalog(response.data)
+    })
   };
+
+  useEffect(()=>{
+    api.getAll().then(response => {
+      setCatalog(response.data)
+    });
+  },[]);
 
   return (
     <div className="list row">
@@ -78,18 +79,18 @@ const TutorialsList = () => {
           </thead>
           <tbody>
           { 
-            tutorials &&
-            tutorials.map((tutorial, index) => (
+            catalog &&
+            catalog.map((catalog, index) => (
               <tr>
-                <th scope="row">{tutorial.key}</th>
-                <td>{tutorial.title}</td>
-                <td>{tutorial.description}</td>
-                <td>{tutorial.type}</td>
-                <td>{tutorial.state ? " Good" : " Damaged"}</td>
-                <td> <Link to={"/catalog/" + tutorial.title}
+                <th scope="row">{catalog.id}</th>
+                <td>{catalog.title}</td>
+                <td>{catalog.description}</td>
+                <td>{catalog.type}</td>
+                <td>{catalog.state ? " Good" : " Damaged"}</td>
+                <td> <Link to={"/catalog/" + catalog.id}
                   className="btn btn-warning">Edit</Link>
                 </td>
-                <td> <Link onClick={() => deleteTutorial(tutorial.title)}
+                <td> <Link onClick={() => deleteCatalog(catalog.id)}
                   className="btn btn-danger">Remove</Link>
                 </td>
               </tr>
@@ -99,7 +100,7 @@ const TutorialsList = () => {
           
         <button
           className="m-3 btn btn-sm btn-danger"
-          onClick={removeAllTutorials}>
+          onClick={removeAllCatalog}>
           Remove All
         </button>
       </div>
@@ -109,23 +110,5 @@ const TutorialsList = () => {
   );
 };
 
-export default TutorialsList;
+export default CatalogsList;
 
-/*<Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button>
-
-      <Modal show={show} onHide={handleClose}>
-<Modal.Header closeButton>
-  <Modal.Title>Modal heading</Modal.Title>
-</Modal.Header>
-<Modal.Body><AddTutorial/></Modal.Body>
-<Modal.Footer>
-  <Button variant="secondary" onClick={handleClose}>
-    Close
-  </Button>
-  <Button variant="primary" onClick={handleClose}>
-    Save Changes
-  </Button>
-</Modal.Footer>
-</Modal>*/

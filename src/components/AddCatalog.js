@@ -1,36 +1,37 @@
 import React, { useState } from "react";
-import TutorialDataService from "../services/CatalogDataService";
+//import TutorialDataService from "../services/CatalogDataService";
+import * as api from "../services/CatalogMockApi";
 
-const AddTutorial = () => {
-  const initialTutorialState = {
-    id: Math.random().toFixed(3),
+const AddCatalog = () => {
+  const initialCatalogState = {
+    //id: Math.random().toFixed(3),
     type: "",
     title: "",
     description: "",
     state: false
   };
-  const [tutorial, setTutorial] = useState(initialTutorialState);
+  const [catalog, setCatalog] = useState(initialCatalogState);
   const [submitted, setSubmitted] = useState(false);
 
   const handleInputChange = event => {
     const { name, value } = event.target;
-    setTutorial({ ...tutorial, [name]: value });
+    setCatalog({ ...catalog, [name]: value });
   };
 
-  const saveTutorial = () => {
-    var data = {
-      title: tutorial.title,
-      description: tutorial.description,
-      type: tutorial.type,
-      state: false
+    const saveCatalog = () => {
+      const data = { 
+        title: catalog.title,
+      description: catalog.description,
+      type: catalog.type,
+      state: false,
+      }
+  
+      api.create(data);
+      setSubmitted(true);
     };
 
-    TutorialDataService.create(data);
-    setSubmitted(true);
-  };
-
-  const newTutorial = () => {
-    setTutorial(initialTutorialState);
+  const newCatalog = () => {
+    setCatalog(initialCatalogState);
     setSubmitted(false);
   };
 
@@ -39,7 +40,7 @@ const AddTutorial = () => {
       {submitted ? (
         <div>
           <h4>You submitted successfully!</h4>
-          <button className="btn btn-success" onClick={newTutorial}>
+          <button className="btn btn-success" onClick={newCatalog}>
             click here to add more
           </button>
         </div>
@@ -52,7 +53,7 @@ const AddTutorial = () => {
               className="form-control"
               id="title"
               required
-              value={tutorial.title}
+              value={catalog.title}
               onChange={handleInputChange}
               name="title"
             />
@@ -65,7 +66,7 @@ const AddTutorial = () => {
               className="form-control"
               id="description"
               required
-              value={tutorial.type}
+              value={catalog.type}
               onChange={handleInputChange}
               name="type"
             />
@@ -78,7 +79,7 @@ const AddTutorial = () => {
               className="form-control"
               id="description"
               required
-              value={tutorial.description}
+              value={catalog.description}
               onChange={handleInputChange}
               name="description"
             />
@@ -94,13 +95,13 @@ const AddTutorial = () => {
          </div>
 
           <br/>
-          <button onClick={saveTutorial} className="btn btn-success">
+          <button onClick={saveCatalog} className="btn btn-success">
             Submit
           </button>
         </div>
       )}
     </div>
   );
-};
+      };
 
-export default AddTutorial;
+export default AddCatalog;
