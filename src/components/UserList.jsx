@@ -48,7 +48,12 @@ const UserList = () => {
   };
 
   const findByUsername = () => {
-    setUsers(UserDataService.findByUser(searchUsername))
+    UserDataService.findByUser(searchUsername)
+    .then(
+      response => {
+        setUsers(response.data)
+      }
+    )
   };
 
   return (
