@@ -1,65 +1,64 @@
-import React, { useState, useEffect } from "react";
-import TutorialDataService from "../services/CatalogDataService";
+import { useState, useEffect } from "react";
+import  * as api from '../services/CatalogMockApi';
 import { Link } from "react-router-dom";
 
 
-const Tutorial = props => {
-  const initialTutorialState = {
-    key: null,
+const Catalog = ({ match }) => {
+  const initialCatalogState = {
+    //key: null,
     title: "",
     type: "",
     description: "",
     state: "damaged",
   };
+
   const [message, setMessage] = useState("");
-  
-  const [currentTutorial, setCurrentTutorial] = useState(initialTutorialState);
-  const [key, setKey] = useState(props.match.params.id)
+  const [currentCatalog  , setCurrentCatalog] = useState(initialCatalogState);
+  const [key, setKey] = useState()
 
   useEffect(()=>{
-    const data = TutorialDataService.getById(key)
-    setCurrentTutorial(data[0])     
-  }, [])
+    api.getOne(match.params.id).then(response => {
+      setCurrentCatalog(response.data);
+    })
+  }, []);
 
-  const   handleInputChange = event => {
+  const handleInputChange = event => {
     const { name, value } = event.target;
-    setCurrentTutorial({ ...currentTutorial, [name]: value });
+    setCurrentCatalog({ ...currentCatalog, [name]: value });
   };
   
   
   const updateState = status => {
     const data = {
-      title: currentTutorial.title,
-      description: currentTutorial.description,
-      type: currentTutorial.type,
+      title: currentCatalog.title,
+      description: currentCatalog.description,
+      type: currentCatalog.type,
       state : status
-    };
-    TutorialDataService.update(key, data);  
-    setCurrentTutorial(data)
+    }
+    setCurrentCatalog(data)
+    api.update(currentCatalog.id, data)
   };
 
-  const updateTutorial = () => {
-    
-    const data = {
-      title: currentTutorial.title,
-      type: currentTutorial.type,
-      description: currentTutorial.description,
-      state: currentTutorial.state
-
-    };  
-    TutorialDataService.update(key, data);
-    setCurrentTutorial(data)
+  const updateCatalog = () => {
+    const data = { 
+      title: currentCatalog.title,
+      type: currentCatalog.type,
+      description: currentCatalog.description,
+      state: currentCatalog.state
+    }
+    setCurrentCatalog(data)
+    api.update(currentCatalog.id, data);;
   };
 
-  const deleteTutorial = () => {
+  const deleteCatalog = () => {
     if (window.confirm('Deseja excluir?')){
-      TutorialDataService.remove(currentTutorial.key);  
+      api.remove(currentCatalog.id);  
     }
   };
 
   return (
     <div>
-      {currentTutorial ? (
+      {currentCatalog ? (
         <div className="edit-form">
           <h4>Catálogo</h4>
             <form>
@@ -70,7 +69,7 @@ const Tutorial = props => {
                   className="form-control"
                   id="title"
                   name="title"
-                  value={currentTutorial.title}
+                  value={currentCatalog.title}
                   onChange={handleInputChange}
                 />
               </div>
@@ -81,7 +80,7 @@ const Tutorial = props => {
                   className="form-control"
                   id="type"
                   name="type"
-                  value={currentTutorial.type}
+                  value={currentCatalog.type}
                   onChange={handleInputChange}
                 />
               </div>
@@ -92,7 +91,7 @@ const Tutorial = props => {
                   className="form-control"
                   id="description"
                   name="description"
-                  value={currentTutorial.description}
+                  value={currentCatalog.description}
                   onChange={handleInputChange}
                 />
               </div>
@@ -101,12 +100,12 @@ const Tutorial = props => {
                 <label>
                   <strong>Status:</strong>
                 </label>
-                {currentTutorial.state ? " Good" : " Damaged"}
+                {currentCatalog.state ? " Good" : " Damaged"}
               </div>
             </form>
             
               
-          {currentTutorial.state ? (
+          {currentCatalog.state ? (
             <button
               className="btn btn-primary mr-2"
               onClick={() => updateState(false)}
@@ -122,7 +121,7 @@ const Tutorial = props => {
             </button>
           )}
           
-          <button className="btn btn-danger mr-2" onClick={deleteTutorial}>
+          <button className="btn btn-danger mr-2" onClick={deleteCatalog}>
             Delete
           </button>
           
@@ -130,7 +129,7 @@ const Tutorial = props => {
             <button
               type="submit"
               className="btn btn-success"
-              onClick={updateTutorial}
+              onClick={updateCatalog}
             >
               Update
             </button>
@@ -147,4 +146,4 @@ const Tutorial = props => {
   );
 };
 
-export default Tutorial;
+export default Catalog;

@@ -13,8 +13,6 @@ const CompaniesList = () => {
     setSearchName(searchName);
   };
 
-
-
   const deleteCompany = (id) => {
     if (window.confirm('Deseja excluir?')){
       api.remove(id);
