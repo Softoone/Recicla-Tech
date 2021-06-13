@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
-import UserDataService from "../services/UserDataService";
+import UserDataService from "../services/UserDataServiceRest";
 
 const User = (props) => {
     const defaultUser = {
@@ -13,14 +12,21 @@ const User = (props) => {
 
   const [message, setMessage] = useState("");
   const [currentUser, setCurrentUser] = useState(defaultUser);
-  const [key, setKey] = useState(props.match.params.id);
-  
 
-  useEffect(()=>{
-    const data = UserDataService.getById(key)
-    console.log(key);
-    setCurrentUser(data[0]); 
-  }, []);
+  
+  const getUser = id => {
+    console.log(id)
+    UserDataService.getId(id)
+    .then(response => {
+      setCurrentUser(response.data)
+    })
+  }
+
+  useEffect(() => {
+    getUser(props.match.params.id)
+  },[props.match.params.id])
+
+
 
   const handleInputChange = event => {
     const { name, value } = event.target;
@@ -35,14 +41,16 @@ const User = (props) => {
       password : currentUser.password
     }
 
-    UserDataService.update(key, data);
-    setCurrentUser(data);
-  };
+    UserDataService.update(currentUser.id, data)
+  }
 
   const deleteUser = () => {
     // console.log(currentTutorial)
     if (window.confirm('Deseja excluir?')){
-        UserDataService.remove(currentUser.name);  
+        UserDataService.remove(currentUser.id)
+        .then(response => {
+          props.history.push("/user")
+        })
     }
   };
 
@@ -124,7 +132,7 @@ const User = (props) => {
       ) : (
         <div>
           <br />
-          <p>Please click on a Tutorial...</p>
+          <p>Please click on a User...</p>
         </div>
       )}
     </div>
