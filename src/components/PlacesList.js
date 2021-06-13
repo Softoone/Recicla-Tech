@@ -43,19 +43,15 @@ const PlacesList = () => {
 
   const removeAllPlaces = () => {
     if (window.confirm('Deseja excluir?')){
-    PlacesDataService.removeAll()
-      .then(response => {
-        console.log(response.data);
-        retrievePlaces();
+      PlacesDataService.removeAll();
+      PlacesDataService.getAll(response => {
+        setPlaces(response.data)
       })
-      .catch(e => {
-        console.log(e);
-      });
     }
   };
 
   const findByTitle = () => {
-    places(PlacesDataService.findByTitle(searchTitle))
+    PlacesDataService.findByTitle((searchTitle))
     .then(response => {
       setPlaces(response.data)
     })
@@ -120,7 +116,11 @@ const PlacesList = () => {
               }
             </tbody>
           </table>
-        
+          <button
+          className="m-3 btn btn-sm btn-danger"
+          onClick={removeAllPlaces}>
+          Remove All
+        </button>
         </div>
     </div>
   );

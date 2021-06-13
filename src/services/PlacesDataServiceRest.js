@@ -15,12 +15,20 @@ const update = (id, data) => {
 const remove = id => {
   return http.delete(`/Places/${id}`);
 };
-//Nao tem esse endpoint no mockAPI
-const removeAll = () => {
-  return http.delete(`/Places`);
-};
-const findByTitle = title => {
-  return http.get(`/Places?title=${title}`);
+
+const removeAll = async () => {
+  const result = await getAll()
+  const data = await result.data.map(item => {
+  remove(item.id)
+  })
+  if (data){
+    window.alert("Todos os itens foram deletados!")
+    window.location.reload()
+  }
+}
+
+const findByTitle = name => {
+  return http.get(`/Places?name=${name}`);
 };
 
 export default {
