@@ -1,4 +1,4 @@
-import http from '../http-common'
+import http from '../http-user'
   
   const getAll = () => http.get("/users");
   
@@ -32,7 +32,7 @@ import http from '../http-common'
   }
   
 
-  const findByUser = username => http.get("/tutorials/?name="+username)
+  const findByUser = username => http.get("/users?name="+username)
 
 /*   const filter = id => {
     if (name === "") return Users
