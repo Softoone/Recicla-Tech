@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import PlacesDataService from "../services/PlacesDataService";
+import PlacesDataService from "../services/PlacesDataServiceRest";
 import { Link } from "react-router-dom";
 
 const Places = props => {
@@ -9,7 +9,6 @@ const Places = props => {
     address: "",
     contact:"",
     materialType:"",
-    latLong:"",
     capacity:"",
     published: "Unpublished"
   };
@@ -18,10 +17,25 @@ const Places = props => {
   const [key, setKey] = useState(props.match.params.id)
 
   useEffect(()=>{
-    const data = PlacesDataService.getById(key)
-    console.log(key)
+    const data = PlacesDataService.getById()
     setCurrentPlace(data[0])     
   }, [])
+
+  const getPlace = id => {
+    PlacesDataService.getById(id).then(
+      response => {
+        setCurrentPlace(response.data);
+        console.log(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+
+  useEffect(() => {
+    getPlace(key);
+  }, [key]);
+
 
   const   handleInputChange = event => {
     const { name, value } = event.target;
@@ -30,31 +44,42 @@ const Places = props => {
 
   const updatePublished = status => {
     const data = {
+      id:currentPlace.id ,
       name: currentPlace.name,
       address: currentPlace.address,
       contact:currentPlace.contact,
       materialType:currentPlace.materialType,
-      latLong:currentPlace.latLong,
       capacity:currentPlace.capacity,
       published: status
     };
-    PlacesDataService.update(key, data);  
-    setCurrentPlace(data)
+    PlacesDataService.update(currentPlace.id, data).then(
+      response => {
+        setCurrentPlace(response.data);
+        console.log(response);
+      })
+      .catch(e => {
+        console.log(e);
+      });
   };
-
   const updatePlace = () => {
     //console.log(currentPlace)
     const data = {
+      id:currentPlace.id,
       name: currentPlace.name,
       address: currentPlace.address,
       contact:currentPlace.contact,
       materialType:currentPlace.materialType,
-      latLong:currentPlace.latLong,
       capacity:currentPlace.capacity,
       published: currentPlace.published
     };  
-    PlacesDataService.update(key, data);
-    setCurrentPlace(data)
+    PlacesDataService.update(currentPlace.id, data).then(
+      response => {
+        setCurrentPlace(response.data);
+        console.log(response);
+      })
+      .catch(e => {
+        console.log(e);
+      });
   };
 
   const deletePlace = () => {
@@ -111,17 +136,6 @@ const Places = props => {
                   id="materialType"
                   name="materialType"
                   value={currentPlace.materialType}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="latLong">Lat/Long</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="latLong"
-                  name="latLong"
-                  value={currentPlace.latLong}
                   onChange={handleInputChange}
                 />
               </div>

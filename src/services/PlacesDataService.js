@@ -25,7 +25,6 @@ const update = (key, data) => {
       item.address = data.address
       item.contact = data.contact
       item.materialType = data.materialType
-      item.latLong = data.latLong
       item.capacity = data.capacity
       item.published = data.published
     }

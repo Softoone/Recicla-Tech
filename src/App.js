@@ -3,20 +3,20 @@ import { Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
-import AddTutorial from "./components/AddPlaces";
-import Tutorial from "./components/Places";
-import TutorialsList from "./components/PlacesList";
+import AddPlaces from "./components/AddPlaces";
+import Places from "./components/Places";
+import PlacesList from "./components/PlacesList";
 
 function App() {
   return (
     <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <a href="/tutorials" className="navbar-brand">
+        <a href="/places" className="navbar-brand">
           Exemplo Bootstrap
         </a>
         <div className="navbar-nav mr-auto">
           <li className="nav-item">
-            <Link to={"/tutorials"} className="nav-link">
+            <Link to={"/places"} className="nav-link">
             Catalog
             </Link>
           </li>
@@ -30,9 +30,9 @@ function App() {
 
       <div className="container mt-3">
         <Switch>
-          <Route exact path={["/", "/tutorials"]} component={TutorialsList} />
-          <Route exact path="/add" component={AddTutorial} />
-          <Route path="/tutorials/:id" component={Tutorial} />
+          <Route exact path={["/", "/places"]} component={PlacesList} />
+          <Route exact path="/add" component={AddPlaces} />
+          <Route path="/places/:id" component={Places} />
         </Switch>
       </div>
     </div>

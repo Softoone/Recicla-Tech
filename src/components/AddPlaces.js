@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import PlacesDataService from "../services/PlacesDataService";
+import PlacesDataService from "../services/PlacesDataServiceRest";
 
 const AddPlaces = () => {
   const initialPlaceState = {
     id: null,
-    title: "",
+    name: "",
     description: "",
     contact:"",
     materialType:"",
-    latLong:"",
     capacity:"",
     published: false
   };
@@ -21,17 +20,23 @@ const AddPlaces = () => {
   };
 
   const savePlace = () => {
-    var data = {
-      name: place.name,
-      address: place.address,
-      contact: place.contact,
-      materialType:place.materialType,
-      latLong:place.latLong,
-      capacity:place.capacity,
-      published: false
-    };
-
-    PlacesDataService.create(data);
+    
+    PlacesDataService.create(place).then(
+      response =>{
+        setPlace({
+          name: response.data.name,
+          address: response.data.address,
+          contact: response.data.contact,
+          materialType:response.data.materialType,
+          capacity:response.data.capacity,
+          published: response.data.published,
+          id: response.data.id
+        })
+         setSubmitted(true);
+      }
+    ).catch(e=> {
+      console.log(e)
+    })
     setSubmitted(true);
   };
 
@@ -100,18 +105,6 @@ const AddPlaces = () => {
               value={place.materialType}
               onChange={handleInputChange}
               name="materialType"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="latLong">Lat/Long</label>
-            <input
-              type="text"
-              className="form-control"
-              id="latLong"
-              placeholder="-12.969522241359458, -38.512655070565565"
-              value={place.latLong}
-              onChange={handleInputChange}
-              name="latLong"
             />
           </div>
           <div className="form-group">
