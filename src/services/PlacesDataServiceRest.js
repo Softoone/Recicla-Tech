@@ -3,7 +3,7 @@ import http from "../http-common";
 const getAll = () => {
   return http.get("/Places");
 };
-const getById = (id) => {
+const get = (id) => {
   return http.get(`/Places/${id}`);
 };
 const create = data => {
@@ -25,7 +25,7 @@ const findByTitle = title => {
 
 export default {
   getAll,
-  getById,
+  get,
   create,
   update,
   remove,

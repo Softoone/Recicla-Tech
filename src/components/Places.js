@@ -16,13 +16,12 @@ const Places = props => {
   const [currentPlace, setCurrentPlace] = useState(initialPlaceState);
   const [key, setKey] = useState(props.match.params.id)
 
-  useEffect(()=>{
-    const data = PlacesDataService.getById()
-    setCurrentPlace(data[0])     
-  }, [])
+  useEffect(() => {
+    getPlace(key);
+  }, [key]);
 
-  const getPlace = id => {
-    PlacesDataService.getById(id).then(
+  const getPlace = (id) => {
+    PlacesDataService.get(id).then(
       response => {
         setCurrentPlace(response.data);
         console.log(response.data);
@@ -32,9 +31,7 @@ const Places = props => {
       });
   };
 
-  useEffect(() => {
-    getPlace(key);
-  }, [key]);
+  
 
 
   const   handleInputChange = event => {
