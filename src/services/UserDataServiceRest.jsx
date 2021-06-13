@@ -1,16 +1,38 @@
 import http from '../http-common'
   
-  const getAll = () => {http.get("/users")};
+  const getAll = () => http.get("/users");
   
-  const getId = id => {http.get("/users"+id)}
+  const getId = id => http.get("/users/"+id)
   
-  const create = data => {http.post("/users",data)};
+  const create = data => http.post("/users",data);
   
-  const update = (id,data) => {http.put("/users"+id,data)}
-  
-  const remove = id => {http.delete("/users"+id)};
+  const update = (id,data) => {
+    http.put(`/users/${id}`,{
+      name : data.name,
+      phone : data.phone,
+      email : data.email,
+      password : data.password
+    })
+  }
 
-  const findByUser = username => {return http.get("/tutorials/?name="+username)}
+  const remove = id => http.delete("/users/"+id);
+
+  const removeAll = () => {
+   getAll()
+    .then(
+      response => {
+        response.data.map((info) => {
+        remove(info.id).then(
+          response => response.data
+        )
+        })
+      })
+
+      return {flag:-1,Mensagem:"Delete Concluído"}
+  }
+  
+
+  const findByUser = username => http.get("/tutorials/?name="+username)
 
 /*   const filter = id => {
     if (name === "") return Users
@@ -39,6 +61,7 @@ import http from '../http-common'
     create,
     update,
     remove,
-    findByUser
+    findByUser,
+    removeAll
   };
   

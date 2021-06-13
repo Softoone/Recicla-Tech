@@ -27,6 +27,7 @@ const AddUser = () => {
 
     UserDataService.create(info)
     .then(response => {
+      console.log(response)
       setUser({
         name:response.data.name,
         phone:response.data.phone,

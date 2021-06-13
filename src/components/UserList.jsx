@@ -6,7 +6,7 @@ import UserDataService from "../services/UserDataServiceRest";
 const UserList = () => {
   
   const [searchUsername, setSearchUsername] = useState("");
-  const [users, setUsers] = useState(UserDataService.getAll());
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     retrieveUsers()
@@ -14,9 +14,10 @@ const UserList = () => {
 
   const retrieveUsers = () => {
     UserDataService.getAll()
-    /* .then(response => {
+    .then(response => {
+      console.log(response)
       setUsers(response.data)
-    }) */
+    })
   } 
 
   const onChangeSearchUsername = e => {
@@ -30,10 +31,19 @@ const UserList = () => {
     }
   }
 
-  const removeAllUsers = () => {
+  const removeAll = () => {
     if (window.confirm('Deseja excluir?')){
-        UserDataService.remove();
-      setUsers(UserDataService.getAll())
+       const UserData = UserDataService.removeAll()
+       console.log(UserData)
+        if (UserData.flag === -1){
+          UserDataService.getAll()
+          .then(
+            response => {
+              setUsers(response.data)
+              window.alert(UserData.Mensagem)
+              window.location.reload()
+            })
+        }
     }
   };
 
@@ -85,11 +95,11 @@ const UserList = () => {
             users.map((user, index) => (
               <tr>
                 <th scope="row">{user.id}</th>
-                <th scope="row">{user.name}</th>
-                <td scope="row">{user.phone}</td>
-                <td scope="row">{user.email}</td>
-                <td scope="row">{user.password}</td>
-                <td scope="row"> <Link to={"/user/" + user.id}
+                <td>{user.name}</td>
+                <td>{user.phone}</td>
+                <td>{user.email}</td>
+                <td>{user.password}</td>
+                <td> <Link to={"/user/" + user.id}
                   className="btn btn-sm btn-warning">Edit</Link>
                 </td>
                 <td scope="row"> 
@@ -105,7 +115,7 @@ const UserList = () => {
           
         <button
           className="m-3 btn btn-sm btn-danger"
-          onClick={removeAllUsers}>
+          onClick={removeAll}>
           Remove All
         </button>
       </div>

@@ -12,10 +12,11 @@ const User = (props) => {
 
   const [message, setMessage] = useState("");
   const [currentUser, setCurrentUser] = useState(defaultUser);
-  const [key, setKey] = useState(props.match.params.id);
+
   
   const getUser = id => {
-    UserDataService.getAll(id)
+    console.log(id)
+    UserDataService.getId(id)
     .then(response => {
       setCurrentUser(response.data)
     })
@@ -40,18 +41,13 @@ const User = (props) => {
       password : currentUser.password
     }
 
-    UserDataService.update(currentUser.name, data, currentUser)
-    .then(response => {
-      setCurrentUser(data)
-      setMessage("Usuário atualizado com sucesso!",response)
-    })
-
+    UserDataService.update(currentUser.id, data)
   }
 
   const deleteUser = () => {
     // console.log(currentTutorial)
     if (window.confirm('Deseja excluir?')){
-        UserDataService.remove(currentUser.name)
+        UserDataService.remove(currentUser.id)
         .then(response => {
           props.history.push("/user")
         })
