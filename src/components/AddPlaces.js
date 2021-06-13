@@ -70,9 +70,9 @@ const AddPlaces = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="address">Address</label>
+            <label htmlFor="address">Email</label>
             <input
-              type="text"
+              type="email"
               className="form-control"
               id="address"
               placeholder = "exemplo@gmail.com"
@@ -84,7 +84,7 @@ const AddPlaces = () => {
           <div className="form-group">
             <label htmlFor="description">Contact</label>
             <input
-              type="text"
+              type="number"
               className="form-control"
               id="contact"
               required
@@ -110,7 +110,7 @@ const AddPlaces = () => {
           <div className="form-group">
             <label htmlFor="capacity">Capacity</label>
             <input
-              type="text"
+              type="number"
               className="form-control"
               id="capacity"
               required

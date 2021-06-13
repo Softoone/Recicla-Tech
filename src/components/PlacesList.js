@@ -94,7 +94,7 @@ const PlacesList = () => {
               <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Name</th>
-                <th scope="col">Address</th>
+                <th scope="col">Email</th>
                 <th scope="col">Contact</th>
                 <th scope="col">Material</th>
                 <th scope="col">Capacity</th>

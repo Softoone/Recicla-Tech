@@ -104,7 +104,7 @@ const Places = props => {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="address">Address</label>
+                <label htmlFor="address">Email</label>
                 <input
                   type="text"
                   className="form-control"
@@ -156,26 +156,26 @@ const Places = props => {
             </form>
           {currentPlace.published ? (
             <button
-              className="badge badge-primary mr-2"
+              className="btn btn-primary"//badge badge-primary mr-2
               onClick={() => updatePublished(false)}
             >
               UnPublish
             </button>
           ) : (
             <button
-              className="badge badge-primary mr-2"
+              className="btn btn-primary"
               onClick={() => updatePublished(true)}
             >
               Publish
             </button>
           )}
-          <button className="badge badge-danger mr-2" onClick={deletePlace}>
+          <button className="btn btn-danger" onClick={deletePlace}>
             Delete
           </button>
           <Link to="/">
             <button
               type="submit"
-              className="badge badge-success"
+              className="btn btn-success"
               onClick={updatePlace}
             >
               Update
